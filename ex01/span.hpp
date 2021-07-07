@@ -8,30 +8,35 @@
 int min(int a, int b);
 int max(int a, int b);
 
-class span {
+class Span {
 private:
     std::set<int>   _set;
     unsigned int _size;
     unsigned int _filled;
-    span();
+    Span();
 public:
-    span(unsigned int n);
-    span(const span& rhs);
-    span& operator=(const span& rhs);
-    ~span();
+    Span(unsigned int n);
+    Span(const Span& rhs);
+    Span& operator=(const Span& rhs);
+    ~Span();
 
-    span& addNumber(int nbr);
+    Span& addNumber(int nbr);
     int shortestSpan() const;
     int longestSpan() const;
 
-    void print() {
-        std::set<int>::const_iterator it = _set.begin();
-        std::cout << "set:" << std::endl;
-        for(; it != _set.end(); it++) {
-            std::cout << *it << std::endl;
+    template<typename T>
+    Span& betterAddNumber(T begin, T end) {
+        while (begin != end && _filled != _size) {
+            _set.insert(*begin);
+            ++begin;
+            ++_filled;
         }
-        std::cout << "end;" << std::endl;
+        if (begin != end)
+            throw std::overflow_error("The set is full!");
+        return *this;
     }
+
+    void print() const;
 };
 
 
