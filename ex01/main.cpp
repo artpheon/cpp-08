@@ -100,8 +100,5 @@ void    test_better_add() {
 int main() {
     srand(time(0));
     test_with_small_numbers();
-    test_with_10000();
-    test_with_100000();
-    test_better_add();
     return 0;
 }

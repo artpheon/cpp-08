@@ -39,7 +39,7 @@ int Span::shortestSpan() const {
     std::set<int>::const_iterator itNext = ++_set.begin();
     for (; it != _set.end(); it++) {
         if (itNext != _set.end()) {
-            min = (*itNext - *it < min ? *itNext - *it : min);
+            min = ::min(*itNext - *it, min);
             ++itNext;
         }
     }
